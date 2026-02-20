@@ -15,7 +15,7 @@
       <div class="header">
         <h1>Welcome to</h1>
         <div class="title-with-logo">
-          <h2>LimboStore</h2>
+          <h2>Limbo</h2>
           <img src="agujeronegro.png" alt="Logo">
         </div>
         <h3>Catálogo Virtual</h3>
@@ -32,15 +32,82 @@
 
     <!-- RIGHT PANEL -->
     <div class="right-panel">
-      <video src="fondo azul.mp4" autoplay loop muted playsinline></video>
-      <div class="mirror-box">
-        <img src="agujeronegro.png" alt="LimboStore Logo">
-        <h2>LimboStore</h2>
-        <p>La mejor tienda online para servicios!</p>
-      </div>
+      <div id="particles-js"></div>
+      <h1 class="main-title">LIMBO</h1>
     </div>
 
   </div>
+
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+  particlesJS("particles-js", {
+    particles: {
+      number: {
+        value: 80,
+        density: {
+          enable: true,
+          value_area: 800
+        }
+      },
+      color: {
+        value: "#ffffff"
+      },
+      shape: {
+        type: "circle"
+      },
+      opacity: {
+        value: 0.5,
+        random: false
+      },
+      size: {
+        value: 5,
+        random: true
+      },
+      line_linked: {
+        enable: true,
+        distance: 150,
+        color: "#ffffff",
+        opacity: 0.25,
+        width: 1
+      },
+      move: {
+        enable: true,
+        speed: 2,
+        direction: "none",
+        random: false,
+        straight: false,
+        out_mode: "out",
+        bounce: false
+      }
+    },
+    interactivity: {
+      detect_on: "canvas",
+      events: {
+        onhover: {
+          enable: true,
+          mode: "grab"
+        },
+        onclick: {
+          enable: true,
+          mode: "push"
+        },
+        resize: true
+      },
+      modes: {
+        grab: {
+          distance: 140,
+          line_linked: {
+            opacity: 0.6
+          }
+        },
+        push: {
+          particles_nb: 4
+        }
+      }
+    },
+    retina_detect: true
+  });
+  </script>
 
 </body>
 </html>
