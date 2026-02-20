@@ -97,6 +97,8 @@ body {
   border: 2px solid #00d4ff;
   box-shadow: 0 0 20px rgba(0, 212, 255, 0.6), inset 0 0 20px rgba(0, 212, 255, 0.1);
   cursor: pointer;
+  text-decoration: none;
+  display: block;
 }
 
 .catalog-btn:hover {
