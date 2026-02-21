@@ -44,18 +44,52 @@ document.addEventListener('DOMContentLoaded', function() {
     retina_detect: true
   };
 
+  const termsParticlesConfig = {
+    particles: {
+      number: { value: 150, density: { enable: true, value_area: 800 } },
+      color: { value: '#ffffff' },
+      shape: { type: 'circle' },
+      opacity: { value: 0.6, random: false },
+      size: { value: 6, random: true },
+      line_linked: {
+        enable: true,
+        distance: 150,
+        color: '#ffffff',
+        opacity: 0.5,
+        width: 2
+      },
+      move: {
+        enable: true,
+        speed: 2,
+        direction: 'none',
+        random: false,
+        straight: false,
+        out_mode: 'out',
+        bounce: false
+      }
+    },
+    interactivity: {
+      detect_on: 'canvas',
+      events: {
+        onhover: { enable: true, mode: 'grab' },
+        onclick: { enable: true, mode: 'push' },
+        resize: true
+      },
+      modes: {
+        grab: { distance: 140, line_linked: { opacity: 0.6 } },
+        push: { particles_nb: 4 }
+      }
+    },
+    retina_detect: true
+  };
+
   // Verificar si ya aceptó los términos
-  const termsAccepted = localStorage.getItem('termsAccepted');
-  
-  if (termsAccepted === 'true') {
-    termsModal.style.display = 'none';
-    catalogContent.style.display = 'block';
-    particlesJS('particles-bg', particlesConfig);
-  }
+  termsModal.style.display = 'flex';
+  catalogContent.style.display = 'none';
+  particlesJS('terms-particles', termsParticlesConfig);
 
   // Aceptar términos
   acceptBtn.addEventListener('click', function() {
-    localStorage.setItem('termsAccepted', 'true');
     termsModal.style.display = 'none';
     catalogContent.style.display = 'block';
     particlesJS('particles-bg', particlesConfig);
@@ -228,15 +262,9 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Iniciar animaciones cuando se aceptan los términos
-  const originalAcceptClick = acceptBtn.onclick;
   acceptBtn.addEventListener('click', function() {
     setTimeout(animateFeatures, 500);
   });
-
-  // Iniciar animaciones si ya se aceptaron los términos
-  if (termsAccepted === 'true') {
-    setTimeout(animateFeatures, 500);
-  }
 
   // Efecto de máquina de escribir
   const texts = [
@@ -277,10 +305,6 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(typeWriter, isDeleting ? 50 : 100);
   }
 
-  if (termsAccepted === 'true') {
-    setTimeout(typeWriter, 1000);
-  }
-
   acceptBtn.addEventListener('click', function() {
     setTimeout(typeWriter, 1000);
   });
@@ -290,6 +314,23 @@ document.addEventListener('DOMContentLoaded', function() {
   // Manejo del modal de producto
   const productModal = document.getElementById('productModal');
   const buyButtons = document.querySelectorAll('.buy-btn');
+  
+  function formatProductDescription(rawDescription) {
+    const normalized = (rawDescription || '').replace(/&#10;/g, '\n');
+    const escaped = normalized
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+    
+    const withMarkdownLinks = escaped.replace(
+      /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+      '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>'
+    );
+
+    return withMarkdownLinks.replace(/\n/g, '<br>');
+  }
 
   buyButtons.forEach(button => {
     button.addEventListener('click', function(e) {
@@ -301,7 +342,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const image = card.getAttribute('data-product-image');
 
       document.getElementById('modalProductTitle').textContent = title;
-      document.getElementById('modalProductDescription').textContent = description;
+      document.getElementById('modalProductDescription').innerHTML = formatProductDescription(description);
       document.getElementById('modalProductPrice').textContent = price;
       document.getElementById('modalProductImage').src = image;
 
