@@ -4,6 +4,16 @@ document.addEventListener('DOMContentLoaded', function() {
   const acceptBtn = document.getElementById('acceptTerms');
   const catalogContent = document.getElementById('catalogContent');
 
+  function formatTermsNumbering() {
+    const numberedTitles = document.querySelectorAll('.terms-text p strong');
+    numberedTitles.forEach((title) => {
+      title.innerHTML = title.innerHTML.replace(
+        /__([0-9]+(?:\.[0-9]+)*\.?)__/g,
+        '<span class="term-number">$1</span>'
+      );
+    });
+  }
+
   // Configuración de partículas
   const particlesConfig = {
     particles: {
@@ -86,6 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Verificar si ya aceptó los términos
   termsModal.style.display = 'flex';
   catalogContent.style.display = 'none';
+  formatTermsNumbering();
   particlesJS('terms-particles', termsParticlesConfig);
 
   // Aceptar términos
@@ -338,12 +349,10 @@ document.addEventListener('DOMContentLoaded', function() {
       const card = this.closest('.product-card');
       const title = card.getAttribute('data-product-title');
       const description = card.getAttribute('data-product-description');
-      const price = card.getAttribute('data-product-price');
       const image = card.getAttribute('data-product-image');
 
       document.getElementById('modalProductTitle').textContent = title;
       document.getElementById('modalProductDescription').innerHTML = formatProductDescription(description);
-      document.getElementById('modalProductPrice').textContent = price;
       document.getElementById('modalProductImage').src = image;
 
       productModal.classList.add('active');

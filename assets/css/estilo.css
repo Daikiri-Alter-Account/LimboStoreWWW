@@ -145,6 +145,8 @@ body {
 .logo {
   font-size: 36px;
   font-weight: 700;
+  font-family: 'Audiowide', 'Idiquat', sans-serif;
+  letter-spacing: 2px;
   color: #ffffff;
   text-shadow: 0 0 30px rgba(255, 255, 255, 1),
                0 0 60px rgba(255, 255, 255, 0.8);
@@ -236,7 +238,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0.7);
-  background: rgba(0, 212, 255, 0.1);
+  background: rgba(8, 16, 20, 0.94);
   border: 2px solid #00d4ff;
   border-radius: 12px;
   padding: 50px 40px 40px 40px;
@@ -247,7 +249,7 @@ body {
   box-shadow: 0 0 25px rgba(0, 212, 255, 0.6),
               0 0 50px rgba(0, 153, 255, 0.4),
               inset 0 0 15px rgba(0, 212, 255, 0.1);
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(8px);
   z-index: 10000;
   opacity: 0;
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -436,7 +438,8 @@ body {
 .welcome-title {
   font-size: 64px;
   font-weight: 700;
-  font-family: 'Idiquat', sans-serif;
+  font-family: 'Audiowide', 'Idiquat', sans-serif;
+  letter-spacing: 1.5px;
   color: #ffffff;
   text-align: center;
   margin-top: -30px;
@@ -698,6 +701,8 @@ body {
 }
 
 .product-card {
+  display: flex;
+  flex-direction: column;
   background: rgba(26, 26, 26, 0.8);
   border: 2px solid #00d4ff;
   border-radius: 15px;
@@ -727,6 +732,7 @@ body {
 }
 
 .product-info {
+  flex: 1;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -751,8 +757,9 @@ body {
 
 .product-footer {
   display: flex;
-  justify-content: flex-end;
+  justify-content: stretch;
   align-items: center;
+  width: 100%;
   margin-top: auto;
 }
 
@@ -764,12 +771,16 @@ body {
 }
 
 .buy-btn {
-  background: transparent;
+  width: 100%;
+  background: rgba(0, 212, 255, 0.12);
   border: 2px solid #00d4ff;
   color: #ffffff;
-  padding: 10px 25px;
+  padding: 11px 14px;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 700;
+  text-align: center;
+  white-space: normal;
+  word-break: break-word;
   border-radius: 8px;
   cursor: pointer;
   transition: 0.3s;
@@ -836,7 +847,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0.7);
-  background: rgba(0, 212, 255, 0.1);
+  background: rgba(8, 16, 20, 0.95);
   border: 2px solid #00d4ff;
   border-radius: 15px;
   width: 900px;
@@ -845,7 +856,7 @@ body {
   box-shadow: 0 0 30px rgba(0, 212, 255, 0.6),
               0 0 60px rgba(0, 153, 255, 0.4),
               inset 0 0 20px rgba(0, 212, 255, 0.1);
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(8px);
   z-index: 10000;
   opacity: 0;
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -905,6 +916,13 @@ body {
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
 }
 
+.terms-text .term-number {
+  display: inline-block;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+}
+
 #modalProductDescription {
   flex: 1;
   min-height: 120px;
@@ -932,14 +950,6 @@ body {
   color: #00d4ff;
   text-decoration: underline;
   word-break: break-word;
-}
-
-.modal-price {
-  font-size: 36px;
-  font-weight: 700;
-  color: #ffffff;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-  margin: 20px 0;
 }
 
 .discord-buy-btn {
